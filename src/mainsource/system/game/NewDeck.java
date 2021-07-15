@@ -4,9 +4,11 @@ import mainsource.system.card.Card;
 import mainsource.system.card.CardValue;
 import mainsource.system.card.Suit;
 
+import static mainsource.system.card.CardValue.getCardValueFromInt;
+
 public class NewDeck {
   
-  private final FULL_DECK_LEN = 52;
+  private final int FULL_DECK_LEN = 52;
   private final int CARDVALUE_LEN = 13;
   private Card[] deck = new Card[FULL_DECK_LEN];
   
