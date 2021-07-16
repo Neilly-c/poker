@@ -1,5 +1,7 @@
 package mainsource.system.game;
 
+import java.util.Arrays;
+
 public class NewTable {
 
     private final int[] CHIP_COUNT;
@@ -7,7 +9,7 @@ public class NewTable {
     private final int PLRS;
     private int pot = 0;
 
-    public NewTable(){
+    public NewTable() throws TableException {
         this(2, 500);
     }
 

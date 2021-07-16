@@ -1,5 +1,11 @@
 package mainsource.system.evaluator;
 
+import mainsource.system.card.Card;
+import mainsource.system.card.CardValue;
+import mainsource.system.handvalue.FinalHand;
+import mainsource.system.handvalue.HandName;
+import mainsource.system.handvalue.OptionValue;
+
 public class HoldemHandEvaluator extends HandEvaluator{
 
     static final int HOLDEM_HAND_CARDS = 7;
@@ -28,7 +34,7 @@ public class HoldemHandEvaluator extends HandEvaluator{
                     }
                 }
                 FinalHand temp_result = super.evaluate(cards_picked);
-                if(temp_result.comparedTo(result) > 0){
+                if(temp_result.compareTo(result) > 0){
                     result = temp_result;
                 }
             }
