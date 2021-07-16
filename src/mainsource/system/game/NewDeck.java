@@ -1,9 +1,7 @@
 package mainsource.system.game;
 
 import mainsource.system.card.Card;
-import mainsource.system.card.CardValue;
 import mainsource.system.card.Suit;
-
 import static mainsource.system.card.CardValue.getCardValueFromInt;
 
 public class NewDeck {
