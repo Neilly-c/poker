@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainsource.Controller">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.291" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainsource.Controller">
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
@@ -12,12 +17,15 @@
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />
+      <RowConstraints />
    </rowConstraints>
    <children>
-      <TextField fx:id="text_hand_input" GridPane.columnIndex="1" />
-      <Label text="Hand(String):" />
-      <TextField fx:id="text_hand_output" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Button fx:id="button_run_parse" mnemonicParsing="false" onAction="#onClickRunParse" text="parse" GridPane.rowIndex="1" />
-      <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="text_hand_villain" GridPane.columnIndex="1" />
+      <Label text="Villain" GridPane.halignment="RIGHT" />
+      <TextField fx:id="text_hand_board" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button fx:id="button_run" mnemonicParsing="false" onAction="#onClickRunParse" text="Deal" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <TextField fx:id="text_hand_hero" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label text="Hero" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+      <TextArea fx:id="area_log" prefHeight="100.0" prefWidth="300.0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
    </children>
 </GridPane>

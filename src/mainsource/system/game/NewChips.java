@@ -2,18 +2,18 @@ package mainsource.system.game;
 
 import java.util.Arrays;
 
-public class NewTable {
+public class NewChips {
 
     private final int[] CHIP_COUNT;
     private final int[] BET_COUNT;
     private final int PLRS;
     private int pot = 0;
 
-    public NewTable() throws TableException {
+    public NewChips() throws TableException {
         this(2, 500);
     }
 
-    public NewTable(int plrs, int chip_count) throws TableException{
+    public NewChips(int plrs, int chip_count) throws TableException{
         if(plrs < 2 || plrs > 10){
             throw new TableException("players must be between 2 to 10");
         }

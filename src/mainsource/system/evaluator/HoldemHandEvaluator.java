@@ -10,6 +10,20 @@ public class HoldemHandEvaluator extends HandEvaluator{
 
     static final int HOLDEM_HAND_CARDS = 7;
 
+    public FinalHand evaluate(Card[]... cards) throws EvaluatorException {
+        int len = 0;
+        for(int i=0;i<cards.length;++i){
+            len += cards[i].length;
+        }
+        Card[] concatCards = new Card[len];
+        len = 0;
+        for(int i=0;i<cards.length;++i){
+            System.arraycopy(cards[i], 0, concatCards, len, cards[i].length);
+            len += cards[i].length;
+        }
+        return evaluate(concatCards);
+    }
+
     @Override
     public FinalHand evaluate(Card[] cards) throws EvaluatorException {
         if(cards.length != HOLDEM_HAND_CARDS){
@@ -24,8 +38,8 @@ public class HoldemHandEvaluator extends HandEvaluator{
         }
         FinalHand result = new FinalHand(HandName.HIGH_CARD, new OptionValue(CardValue.TWO));
         Card[] cards_picked = new Card[5];
-        for(int i=0;i<HOLDEM_HAND_CARDS;++i){
-            for(int j=i;j<HOLDEM_HAND_CARDS;++j){
+        for(int i=0;i<HOLDEM_HAND_CARDS-1;++i){
+            for(int j=i+1;j<HOLDEM_HAND_CARDS;++j){
                 int count = 0;
                 for(int k=0;k<HOLDEM_HAND_CARDS;++k){
                     if(k != i && k != j){

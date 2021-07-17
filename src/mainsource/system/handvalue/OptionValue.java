@@ -75,6 +75,9 @@ public class OptionValue implements Comparable<OptionValue> {
         CardValue[] values = {value1, value2, value3, value4, value5};
         int value = 0;
         for(int i=0;i<reservedValues.get(handName);++i){
+            if(values[i] == null){
+                break;
+            }
             value += values[i].equals(CardValue.ACE) ? 14 : values[i].getValue();
             value *= 16;
         }
@@ -86,15 +89,21 @@ public class OptionValue implements Comparable<OptionValue> {
             case ROYAL_FLUSH:
                 return "ROYAL FLUSH";
             case STRAIGHT_FLUSH:
+            case STRAIGHT:
                 return getValue1().toString() + " high";
             case QUADS:
                 return getValue1().toString() + ", kicker " + getValue2().toString();
             case FULL_HOUSE:
                 return getValue1().toString() + " full of " + getValue2().toString();
             case FLUSH:
-                return getValue1().toString() + " high";
-            case STRAIGHT:
-                return getValue1().toString() + " high";
+            case HIGH_CARD:
+                return getValue1().toString() + "high, " + getValue2().toString() + ", " + getValue3() + ", " + getValue4() + ", " + getValue5();
+            case SET:
+                return getValue1().toString() + ", kicker " + getValue2().toString() + ", " + getValue3().toString();
+            case TWO_PAIRS:
+                return getValue1().toString() + ", " + getValue2().toString() + ", kicker " + getValue3().toString();
+            case ONE_PAIR:
+                return getValue1().toString() + ", kicker " + getValue2().toString() + ", " + getValue3().toString() + ", " + getValue4().toString();
         }
         return getValue1().toString();
     }

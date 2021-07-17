@@ -27,6 +27,10 @@ public final class Card implements Comparable<Card> {
         return this.value.name() + " of " + this.suit.name() + ": " + this.getNumber();
     }
 
+    public String toAbbreviateString(){
+        return this.value.getAbb() + this.suit.getAbb();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
