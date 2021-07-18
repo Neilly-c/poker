@@ -6,9 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import mainsource.gui.ImageViewAdaptor;
 import mainsource.system.card.Card;
 import mainsource.system.evaluator.EvaluatorException;
-import mainsource.system.evaluator.HandEvaluator;
 import mainsource.system.evaluator.HoldemHandEvaluator;
 import mainsource.system.game.NewDeck;
 import mainsource.system.handvalue.FinalHand;
@@ -24,15 +26,21 @@ public class Controller implements Initializable {
     public TextField text_hand_board;
     public TextArea area_log;
     public Button button_run;
+    public ImageView img_hero1, img_hero2;
+    public ImageView img_villain1, img_villain2;
+    public ImageView img_board1, img_board2, img_board3, img_board4, img_board5;
+    private ImageView[] imgs_hero, imgs_villain, imgs_board;
 
     private StringHandParser stringHandParser;
     private HoldemHandEvaluator handEvaluator;
     private NewDeck newDeck;
+    private ImageViewAdaptor imageViewAdaptor;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         stringHandParser = new StringHandParser();
         handEvaluator = new HoldemHandEvaluator();
+        imageViewAdaptor = new ImageViewAdaptor();
     }
 
     public void onClickRunParse(ActionEvent actionEvent) {
@@ -53,6 +61,21 @@ public class Controller implements Initializable {
             Card[] card_hero = stringHandParser.parse(text_hand_hero.getText());
             Card[] card_villain = stringHandParser.parse(text_hand_villain.getText());
             Card[] card_board = stringHandParser.parse(text_hand_board.getText());
+
+            imgs_hero = new ImageView[]{img_hero1, img_hero2};
+            imgs_villain = new ImageView[]{img_villain1, img_villain2};
+            imgs_board = new ImageView[]{img_board1, img_board2, img_board3, img_board4, img_board5};
+            Image[] images_hero = imageViewAdaptor.convertCardToImage(card_hero);
+            Image[] images_villain = imageViewAdaptor.convertCardToImage(card_villain);
+            Image[] images_board = imageViewAdaptor.convertCardToImage(card_board);
+            for(int i=0;i<5;++i){       //hard coding
+                if(i<2){
+                    imgs_hero[i].setImage(images_hero[i]);
+                    imgs_villain[i].setImage(images_villain[i]);
+                }
+                imgs_board[i].setImage(images_board[i]);
+            }
+
             FinalHand finalHandHero = handEvaluator.evaluate(card_hero, card_board);
             FinalHand finalHandVillain = handEvaluator.evaluate(card_villain, card_board);
             insertTextLn(area_log, finalHandHero.toString(), finalHandVillain.toString());

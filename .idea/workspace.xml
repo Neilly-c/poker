@@ -110,6 +110,9 @@
     <property name="recentsLimit" value="5" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Java\poker\src\imgresource" />
+    </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="mainsource.system.handvalue" />
       <recent name="mainsource.system.parser" />
