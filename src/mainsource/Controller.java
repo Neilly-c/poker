@@ -79,6 +79,13 @@ public class Controller implements Initializable {
             FinalHand finalHandHero = handEvaluator.evaluate(card_hero, card_board);
             FinalHand finalHandVillain = handEvaluator.evaluate(card_villain, card_board);
             insertTextLn(area_log, finalHandHero.toString(), finalHandVillain.toString());
+            if(finalHandHero.compareTo(finalHandVillain) > 0){
+                insertTextLn(area_log, "Hero wins the pot");
+            }else if(finalHandHero.compareTo(finalHandVillain) < 0){
+                insertTextLn(area_log, "Villain wins the pot");
+            }else{
+                insertTextLn(area_log, "split pot");
+            }
         } catch (StringHandParserException | EvaluatorException e) {
             e.printStackTrace();
         }
