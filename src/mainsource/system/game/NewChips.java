@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 public class NewChips {
 
-    private final int[] CHIP_COUNT;
-    private final int[] BET_COUNT;
-    private final int PLRS;
-    private int pot = 0;
+    protected final int[] CHIP_COUNT;
+    protected final int[] BET_COUNT;
+    protected final int PLRS;
+    protected int pot = 0;
 
     public NewChips() throws TableException {
         this(2, 500);
@@ -59,6 +59,22 @@ public class NewChips {
             pot += i;
         }
         Arrays.fill(BET_COUNT, 0);
+    }
+
+    public void winsPot(int p){
+        CHIP_COUNT[p] += pot;
+        pot = 0;
+    }
+
+    public void splitPot(int... p){
+        int eachPot = pot / p.length;
+        for(int i=0;i<p.length;i++){
+            CHIP_COUNT[p[i]] += eachPot;
+            if(pot % eachPot < i){
+                ++CHIP_COUNT[p[i]];
+            }
+        }
+        pot = 0;
     }
 
 }

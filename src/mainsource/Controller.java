@@ -24,6 +24,9 @@ public class Controller implements Initializable {
     public TextField text_hand_hero;
     public TextField text_hand_villain;
     public TextField text_hand_board;
+    public TextField text_chips_hero, text_chips_villain;
+    public TextField text_bets_hero, text_bets_villain;
+    public TextField text_pot;
     public TextArea area_log;
     public Button button_run;
     public ImageView img_hero1, img_hero2;
