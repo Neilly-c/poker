@@ -24,6 +24,7 @@
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />
+      <RowConstraints />
    </rowConstraints>
    <children>
       <TextField fx:id="text_chips_villain" GridPane.columnIndex="1" GridPane.valignment="TOP" />
@@ -32,7 +33,7 @@
       <Button fx:id="button_run" mnemonicParsing="false" onAction="#onClickRunParse" text="Deal" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <TextField fx:id="text_chips_hero" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
       <Label text="Hero" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-      <TextArea fx:id="area_log" prefHeight="100.0" prefWidth="500.0" GridPane.columnSpan="7" GridPane.rowIndex="3" />
+      <TextArea fx:id="area_log" prefHeight="100.0" prefWidth="500.0" GridPane.columnSpan="7" GridPane.rowIndex="4" />
       <ImageView fx:id="img_villain1" fitHeight="59.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
       <ImageView fx:id="img_hero1" fitHeight="59.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
       <ImageView fx:id="img_board1" fitHeight="59.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
@@ -44,5 +45,8 @@
       <ImageView fx:id="img_board5" fitHeight="59.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="1" />
       <TextField fx:id="text_bets_villain" GridPane.columnIndex="1" GridPane.valignment="BOTTOM" />
       <TextField fx:id="text_bets_hero" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+      <Button mnemonicParsing="false" text="Fold" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <Button mnemonicParsing="false" text="Call" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+      <Button mnemonicParsing="false" text="Raise" GridPane.columnIndex="6" GridPane.rowIndex="3" />
    </children>
 </GridPane>

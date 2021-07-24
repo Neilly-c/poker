@@ -1,33 +1,35 @@
-package mainsource.system.game;
+package mainsource.system.game.gameparts;
+
+import mainsource.system.game.TableException;
 
 import java.util.Arrays;
 
+import static mainsource.system.game.NewGame.PLRS;
+
 public class NewChips {
 
-    protected int[] chipCount;
-    protected int[] betCount;
-    protected int plrs;
-    protected int pot = 0;
+    private int[] chipCount;
+    private int[] betCount;
+    private int pot = 0;
 
     public NewChips() throws TableException {
-        this(2, 500);
+        this(500);
     }
 
-    public NewChips(int plrs, int chip_count) throws TableException{
-        if(plrs < 2 || plrs > 10){
+    public NewChips(int chip_count) throws TableException{
+        if(PLRS < 2 || PLRS > 10){
             throw new TableException("players must be between 2 to 10");
         }
         if(chip_count < 0){
             throw new TableException("chip count must be positive");
         }
-        chipCount = new int[plrs];
-        betCount = new int[plrs];
-        this.plrs = plrs;
+        chipCount = new int[PLRS];
+        betCount = new int[PLRS];
         Arrays.fill(chipCount, chip_count);
     }
 
     public void raise(int p, int val) throws TableException{
-        if(p < 0 || p >= plrs){
+        if(p < 0 || p >= PLRS){
             throw new TableException("invalid number of players");
         }
         if(chipCount[p] < val - betCount[p]){
@@ -38,11 +40,11 @@ public class NewChips {
     }
 
     public void call(int p) throws TableException{
-        if(p < 0 || p >= plrs){
+        if(p < 0 || p >= PLRS){
             throw new TableException("invalid number of players");
         }
         int bet_max = 0;
-        for(int i = 0; i< plrs; ++i){
+        for(int i = 0; i< PLRS; ++i){
             if(betCount[i] > bet_max){
                 bet_max = betCount[i];
             }
@@ -77,4 +79,15 @@ public class NewChips {
         pot = 0;
     }
 
+    public int getChipCount(int p) {
+        return chipCount[p];
+    }
+
+    public int getBetCount(int p) {
+        return betCount[p];
+    }
+
+    public int getPot() {
+        return pot;
+    }
 }
