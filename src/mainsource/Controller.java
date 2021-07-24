@@ -9,10 +9,12 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import mainsource.gui.ImageViewAdaptor;
+import mainsource.gui.NewChipsToGui;
 import mainsource.system.card.Card;
 import mainsource.system.evaluator.EvaluatorException;
 import mainsource.system.evaluator.HoldemHandEvaluator;
 import mainsource.system.game.NewDeck;
+import mainsource.system.game.TableException;
 import mainsource.system.handvalue.FinalHand;
 import mainsource.system.parser.StringHandParser;
 import mainsource.system.parser.StringHandParserException;
@@ -21,9 +23,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-    public TextField text_hand_hero;
-    public TextField text_hand_villain;
-    public TextField text_hand_board;
     public TextField text_chips_hero, text_chips_villain;
     public TextField text_bets_hero, text_bets_villain;
     public TextField text_pot;
@@ -37,6 +36,7 @@ public class Controller implements Initializable {
     private StringHandParser stringHandParser;
     private HoldemHandEvaluator handEvaluator;
     private NewDeck newDeck;
+    private NewChipsToGui newChipsToGui;
     private ImageViewAdaptor imageViewAdaptor;
 
     @Override
@@ -44,26 +44,26 @@ public class Controller implements Initializable {
         stringHandParser = new StringHandParser();
         handEvaluator = new HoldemHandEvaluator();
         imageViewAdaptor = new ImageViewAdaptor();
+        try {
+            newChipsToGui = new NewChipsToGui(2, 500, new TextField[]{text_chips_hero, text_chips_villain},
+                    new TextField[]{text_bets_hero, text_bets_villain}, text_pot);
+            newChipsToGui.refresh();
+        } catch (TableException e) {
+            e.printStackTrace();
+        }
     }
 
     public void onClickRunParse(ActionEvent actionEvent) {
-        text_hand_hero.setText("");
-        text_hand_villain.setText("");
-        text_hand_board.setText("");
         newDeck = new NewDeck();
-        addText(text_hand_hero, newDeck.deal1().toAbbreviateString());
-        addText(text_hand_villain, newDeck.deal1().toAbbreviateString());
-        addText(text_hand_hero, newDeck.deal1().toAbbreviateString());
-        addText(text_hand_villain, newDeck.deal1().toAbbreviateString());
-        addText(text_hand_board, newDeck.deal1().toAbbreviateString());
-        addText(text_hand_board, newDeck.deal1().toAbbreviateString());
-        addText(text_hand_board, newDeck.deal1().toAbbreviateString());
-        addText(text_hand_board, newDeck.deal1().toAbbreviateString());
-        addText(text_hand_board, newDeck.deal1().toAbbreviateString());
+        String s_card_hero, s_card_villain, s_card_board;
+        s_card_hero = newDeck.deal1().toAbbreviateString() + newDeck.deal1().toAbbreviateString();
+        s_card_villain = newDeck.deal1().toAbbreviateString() + newDeck.deal1().toAbbreviateString();
+        s_card_board = newDeck.deal1().toAbbreviateString() + newDeck.deal1().toAbbreviateString() + newDeck.deal1().toAbbreviateString()
+                + newDeck.deal1().toAbbreviateString() + newDeck.deal1().toAbbreviateString();
         try {
-            Card[] card_hero = stringHandParser.parse(text_hand_hero.getText());
-            Card[] card_villain = stringHandParser.parse(text_hand_villain.getText());
-            Card[] card_board = stringHandParser.parse(text_hand_board.getText());
+            Card[] card_hero = stringHandParser.parse(s_card_hero);
+            Card[] card_villain = stringHandParser.parse(s_card_villain);
+            Card[] card_board = stringHandParser.parse(s_card_board);
 
             imgs_hero = new ImageView[]{img_hero1, img_hero2};
             imgs_villain = new ImageView[]{img_villain1, img_villain2};

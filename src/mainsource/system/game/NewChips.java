@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public class NewChips {
 
-    protected final int[] CHIP_COUNT;
-    protected final int[] BET_COUNT;
-    protected final int PLRS;
+    protected int[] chipCount;
+    protected int[] betCount;
+    protected int plrs;
     protected int pot = 0;
 
     public NewChips() throws TableException {
@@ -20,58 +20,58 @@ public class NewChips {
         if(chip_count < 0){
             throw new TableException("chip count must be positive");
         }
-        CHIP_COUNT = new int[plrs];
-        BET_COUNT = new int[plrs];
-        PLRS = plrs;
-        Arrays.fill(CHIP_COUNT, chip_count);
+        chipCount = new int[plrs];
+        betCount = new int[plrs];
+        this.plrs = plrs;
+        Arrays.fill(chipCount, chip_count);
     }
 
     public void raise(int p, int val) throws TableException{
-        if(p < 0 || p >= PLRS){
+        if(p < 0 || p >= plrs){
             throw new TableException("invalid number of players");
         }
-        if(CHIP_COUNT[p] < val - BET_COUNT[p]){
+        if(chipCount[p] < val - betCount[p]){
             throw new TableException("invalid bet");
         }
-        CHIP_COUNT[p] -= (val - BET_COUNT[p]);
-        BET_COUNT[p] = val;
+        chipCount[p] -= (val - betCount[p]);
+        betCount[p] = val;
     }
 
     public void call(int p) throws TableException{
-        if(p < 0 || p >= PLRS){
+        if(p < 0 || p >= plrs){
             throw new TableException("invalid number of players");
         }
         int bet_max = 0;
-        for(int i=0;i<PLRS;++i){
-            if(BET_COUNT[i] > bet_max){
-                bet_max = BET_COUNT[i];
+        for(int i = 0; i< plrs; ++i){
+            if(betCount[i] > bet_max){
+                bet_max = betCount[i];
             }
         }
-        if(bet_max == BET_COUNT[p]){
+        if(bet_max == betCount[p]){
             throw new TableException("invalid call");
         }
-        CHIP_COUNT[p] -= (bet_max - BET_COUNT[p]);
-        BET_COUNT[p] = bet_max;
+        chipCount[p] -= (bet_max - betCount[p]);
+        betCount[p] = bet_max;
     }
 
     public void resume(){
-        for(int i : BET_COUNT){
+        for(int i : betCount){
             pot += i;
         }
-        Arrays.fill(BET_COUNT, 0);
+        Arrays.fill(betCount, 0);
     }
 
     public void winsPot(int p){
-        CHIP_COUNT[p] += pot;
+        chipCount[p] += pot;
         pot = 0;
     }
 
     public void splitPot(int... p){
         int eachPot = pot / p.length;
         for(int i=0;i<p.length;i++){
-            CHIP_COUNT[p[i]] += eachPot;
+            chipCount[p[i]] += eachPot;
             if(pot % eachPot < i){
-                ++CHIP_COUNT[p[i]];
+                ++chipCount[p[i]];
             }
         }
         pot = 0;

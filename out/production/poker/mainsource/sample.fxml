@@ -26,11 +26,11 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <TextField fx:id="text_hand_villain" GridPane.columnIndex="1" />
+      <TextField fx:id="text_chips_villain" GridPane.columnIndex="1" GridPane.valignment="TOP" />
       <Label text="Villain" GridPane.halignment="RIGHT" />
-      <TextField fx:id="text_hand_board" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="text_pot" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <Button fx:id="button_run" mnemonicParsing="false" onAction="#onClickRunParse" text="Deal" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-      <TextField fx:id="text_hand_hero" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="text_chips_hero" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
       <Label text="Hero" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
       <TextArea fx:id="area_log" prefHeight="100.0" prefWidth="500.0" GridPane.columnSpan="7" GridPane.rowIndex="3" />
       <ImageView fx:id="img_villain1" fitHeight="59.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
@@ -42,5 +42,7 @@
       <ImageView fx:id="img_board3" fitHeight="59.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1" />
       <ImageView fx:id="img_board4" fitHeight="59.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1" />
       <ImageView fx:id="img_board5" fitHeight="59.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+      <TextField fx:id="text_bets_villain" GridPane.columnIndex="1" GridPane.valignment="BOTTOM" />
+      <TextField fx:id="text_bets_hero" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
    </children>
 </GridPane>
