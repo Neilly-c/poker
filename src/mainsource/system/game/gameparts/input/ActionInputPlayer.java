@@ -4,6 +4,11 @@ import mainsource.system.game.gameparts.ActionInput;
 
 public class ActionInputPlayer extends ActionInput {
     @Override
+    public int getAction() {
+        return 0;
+    }
+
+    @Override
     public void fold() {
 
     }
